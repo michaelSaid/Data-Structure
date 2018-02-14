@@ -8,8 +8,9 @@ public class Calculator implements ICalculator {
 	}
 
 	public float divide(int x, int y) {
-		if (y == 0)
+		if (y == 0) {
 			throw new RuntimeException("'Division by zero!'!");
+		}
 		return (float) x / y;
 	}
 
