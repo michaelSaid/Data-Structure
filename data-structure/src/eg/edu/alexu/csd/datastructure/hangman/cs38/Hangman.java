@@ -32,18 +32,19 @@ public class Hangman implements IHangman {
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
-			secretWord = dictionary[ran.nextInt(dictionary.length)];
-			guessWord = "-";
-			for (int i = 1; i < secretWord.length(); i++) {
-				guessWord += "-";
-			}
-			return secretWord;
+		secretWord = dictionary[ran.nextInt(dictionary.length)];
+		guessWord = "-";
+		for (int i = 1; i < secretWord.length(); i++) {
+			guessWord += "-";
+		}
+		return secretWord;
 	}
 
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())||secretWord.equals(guessWord)||secretWord==null) {
+		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())
+				|| secretWord.equals(guessWord) || secretWord == null) {
 			throw new RuntimeException();
 		}
 		if (c == null) {
@@ -58,7 +59,7 @@ public class Hangman implements IHangman {
 				}
 			}
 			if (!found) {
-				maxWrongGuesses --;
+				maxWrongGuesses--;
 			}
 			if (maxWrongGuesses == 0) {
 				return null;
