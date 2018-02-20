@@ -15,7 +15,6 @@ void setDictionary(String[] words);
 * @return secret word or null
  * @throws FileNotFoundException 
 */
-String[] readFromFile(String name) throws FileNotFoundException;
 String selectRandomSecretWord();
 /**
 * Receive a new user guess, and verify it against the secret word.

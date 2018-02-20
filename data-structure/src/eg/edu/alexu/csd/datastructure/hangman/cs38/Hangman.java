@@ -1,19 +1,24 @@
 package eg.edu.alexu.csd.datastructure.hangman.cs38;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
 
 import eg.edu.alexu.csd.datastructure.hangman.IHangman;
-
+/**
+ * @author DELL
+ *
+ *
+ */
 public class Hangman implements IHangman {
 
 	String[] Dictionary;
 	String SecretWord;
 	int MaxWrongGuesses;
 	String GuessWord = "-";
-
+	int numWords ;
 	@Override
 	public void setDictionary(String[] words) {
 		// TODO Auto-generated method stub
@@ -25,8 +30,8 @@ public class Hangman implements IHangman {
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
-		if (Dictionary.length > 0) {
-			SecretWord = Dictionary[ran.nextInt(Dictionary.length)];
+		if (numWords > 0) {
+			SecretWord = Dictionary[ran.nextInt(numWords)];
 			for (int i = 1; i < SecretWord.length(); i++) {
 				GuessWord += "-";
 			}
@@ -65,27 +70,23 @@ public class Hangman implements IHangman {
 		}
 	}
 
-	@SuppressWarnings("null")
-	@Override
+	@SuppressWarnings("resource")
 	public String[] readFromFile(String name) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		File file = new File(name);
-		String[] in = null ;
-	    try {
+		String[]in = new String[1000];
+        try {
+            Scanner input = new Scanner(System.in);
+            File file = new File(name);
+            input = new Scanner(file);
+            while (input.hasNextLine()) {
+                 in[numWords] = input.nextLine();
+                 numWords++;
+            }
+            input.close();
 
-	        Scanner sc = new Scanner(file);
-
-	        while (sc.hasNextLine()) {
-	            int i = 0;
-	            in[i]=sc.nextLine();
-	            i++;
-	        }
-	        sc.close();
-	    } 
-	    catch (FileNotFoundException e) {
-	        e.printStackTrace();
-	    }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 		return in;
 	 }
-
 }
