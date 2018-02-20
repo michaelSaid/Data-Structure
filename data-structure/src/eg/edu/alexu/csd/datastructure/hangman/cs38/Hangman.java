@@ -14,17 +14,17 @@ import eg.edu.alexu.csd.datastructure.hangman.IHangman;
  */
 public class Hangman implements IHangman {
 
-	String[] Dictionary;
-	String SecretWord;
-	int MaxWrongGuesses;
-	String GuessWord = "-";
+	String[] dictionary;
+	String secretWord;
+	int maxWrongGuesses;
+	String guessWord = "-";
 	int numWords;
 
 	@Override
 	public void setDictionary(String[] words) {
 		// TODO Auto-generated method stub
 
-		Dictionary = words;
+		dictionary = words;
 	}
 
 	@Override
@@ -32,11 +32,11 @@ public class Hangman implements IHangman {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
 		if (numWords > 0) {
-			SecretWord = Dictionary[ran.nextInt(numWords)];
-			for (int i = 1; i < SecretWord.length(); i++) {
-				GuessWord += "-";
+			secretWord = dictionary[ran.nextInt(numWords)];
+			for (int i = 1; i < secretWord.length(); i++) {
+				guessWord += "-";
 			}
-			return SecretWord;
+			return secretWord;
 		}
 		return null;
 	}
@@ -44,31 +44,31 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (MaxWrongGuesses < 2) {
+		if (maxWrongGuesses < 2) {
 			return null;
 		}
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 			boolean found = false;
-			for (int i = 0; i < SecretWord.length() && c != null; i++) {
-				if (SecretWord.substring(i, i + 1).equalsIgnoreCase(c.toString())) {
-					GuessWord = GuessWord.substring(0, i) + SecretWord.charAt(i) + GuessWord.substring(i + 1);
+			for (int i = 0; i < secretWord.length() && c != null; i++) {
+				if (secretWord.substring(i, i + 1).equalsIgnoreCase(c.toString())) {
+					guessWord = guessWord.substring(0, i) + secretWord.charAt(i) + guessWord.substring(i + 1);
 					found = true;
 				}
 			}
 			if (!found && c != null) {
-				MaxWrongGuesses--;
+				maxWrongGuesses--;
 			}
 		}
-		return GuessWord;
+		return guessWord;
 	}
 
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
 		// TODO Auto-generated method stub
 		if (max != null) {
-			MaxWrongGuesses = max.intValue();
+			maxWrongGuesses = max.intValue();
 		} else {
-			MaxWrongGuesses = 1;
+			maxWrongGuesses = 1;
 		}
 	}
 

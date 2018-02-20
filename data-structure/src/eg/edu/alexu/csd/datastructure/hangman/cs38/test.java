@@ -11,7 +11,7 @@ public class test {
 		mygame.setDictionary(Wo);
 		mygame.selectRandomSecretWord();
 		mygame.setMaxWrongGuesses(3);
-		System.out.println(mygame.GuessWord);
+		System.out.println(mygame.guessWord);
 		Scanner inp = new Scanner(System.in);
 		String in = "0";
 		while(in!=null) {
