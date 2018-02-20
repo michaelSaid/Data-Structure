@@ -18,7 +18,6 @@ public class Hangman implements IHangman {
 	String secretWord;
 	int maxWrongGuesses;
 	String guessWord = "-";
-	int numWords;
 
 	@Override
 	public void setDictionary(String[] words) {
@@ -31,7 +30,7 @@ public class Hangman implements IHangman {
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
-		if (numWords > 0) {
+		if (dictionary.length > 0) {
 			secretWord = dictionary[ran.nextInt(dictionary.length)];
 			for (int i = 1; i < secretWord.length(); i++) {
 				guessWord += "-";
@@ -82,9 +81,10 @@ public class Hangman implements IHangman {
 			Scanner input = new Scanner(System.in);
 			File file = new File(name);
 			input = new Scanner(file);
+			int i = 0 ;
 			while (input.hasNextLine()) {
-				in[numWords] = input.nextLine();
-				numWords++;
+				in[i] = input.nextLine();
+				i++;
 			}
 			input.close();
 
