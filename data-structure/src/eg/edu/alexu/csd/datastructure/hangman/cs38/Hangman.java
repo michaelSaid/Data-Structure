@@ -31,6 +31,7 @@ public class Hangman implements IHangman {
 	@Override
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
+		if(dictionary.length>0) {
 		Random ran = new Random();
 		secretWord = dictionary[ran.nextInt(dictionary.length)];
 		guessWord = "-";
@@ -38,6 +39,8 @@ public class Hangman implements IHangman {
 			guessWord += "-";
 		}
 		return secretWord;
+		}
+		return null ;
 	}
 
 	@Override
