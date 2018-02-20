@@ -32,7 +32,7 @@ public class Hangman implements IHangman {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
 		if (numWords > 0) {
-			secretWord = dictionary[ran.nextInt(numWords)];
+			secretWord = dictionary[ran.nextInt(dictionary.length)];
 			for (int i = 1; i < secretWord.length(); i++) {
 				guessWord += "-";
 			}
@@ -46,6 +46,8 @@ public class Hangman implements IHangman {
 		// TODO Auto-generated method stub
 		if (maxWrongGuesses < 2) {
 			return null;
+		}else if(c==null) {
+			return guessWord;
 		}
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 			boolean found = false;
