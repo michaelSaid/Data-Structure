@@ -75,7 +75,7 @@ public class Hangman implements IHangman {
 	@SuppressWarnings("resource")
 	public String[] readFromFile(String name) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		String[] in = new String[1000];
+		String[] in = new String[100];
 		try {
 			Scanner input = new Scanner(System.in);
 			File file = new File(name);
