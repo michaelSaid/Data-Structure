@@ -29,6 +29,9 @@ public class Hangman implements IHangman {
 	@Override
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
+		if (dictionary == null) {
+			throw new RuntimeException();
+		}
 		Random ran = new Random();
 		if (dictionary.length > 0) {
 			secretWord = dictionary[ran.nextInt(dictionary.length)];
@@ -43,10 +46,10 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if(maxWrongGuesses == 0) {
+		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())) {
 			throw new RuntimeException();
 		}
-		if(c==null) {
+		if (c == null) {
 			return guessWord;
 		}
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
@@ -85,7 +88,7 @@ public class Hangman implements IHangman {
 			Scanner input = new Scanner(System.in);
 			File file = new File(name);
 			input = new Scanner(file);
-			int i = 0 ;
+			int i = 0;
 			while (input.hasNextLine()) {
 				in[i] = input.nextLine();
 				i++;
