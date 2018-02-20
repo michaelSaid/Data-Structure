@@ -22,7 +22,7 @@ public class Hangman implements IHangman {
 	@Override
 	public void setDictionary(String[] words) {
 		// TODO Auto-generated method stub
-		if (dictionary == null) {
+		if (words == null) {
 			throw new RuntimeException();
 		}
 		dictionary = words;
