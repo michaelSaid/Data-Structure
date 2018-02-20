@@ -43,7 +43,9 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-
+		if(maxWrongGuesses == 0) {
+			throw new RuntimeException();
+		}
 		if(c==null) {
 			return guessWord;
 		}
@@ -68,7 +70,7 @@ public class Hangman implements IHangman {
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
 		// TODO Auto-generated method stub
-		if (max != null) {
+		if (max != null && max > 0) {
 			maxWrongGuesses = max.intValue();
 		} else {
 			maxWrongGuesses = 1;
