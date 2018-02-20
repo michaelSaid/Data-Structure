@@ -33,14 +33,11 @@ public class Hangman implements IHangman {
 			throw new RuntimeException();
 		}
 		Random ran = new Random();
-		if (dictionary.length > 0) {
 			secretWord = dictionary[ran.nextInt(dictionary.length)];
 			for (int i = 1; i < secretWord.length(); i++) {
 				guessWord += "-";
 			}
 			return secretWord;
-		}
-		return null;
 	}
 
 	@Override
@@ -73,6 +70,9 @@ public class Hangman implements IHangman {
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
 		// TODO Auto-generated method stub
+		if (secretWord.trim().isEmpty() || secretWord.isEmpty()) {
+			throw new RuntimeException();
+		}
 		if (max != null && max > 0) {
 			maxWrongGuesses = max.intValue();
 		} else {
