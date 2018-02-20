@@ -70,9 +70,6 @@ public class Hangman implements IHangman {
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
 		// TODO Auto-generated method stub
-		if (secretWord.trim().isEmpty() || secretWord.isEmpty()) {
-			throw new RuntimeException();
-		}
 		if (max != null && max > 0) {
 			maxWrongGuesses = max.intValue();
 		} else {
