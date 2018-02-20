@@ -58,7 +58,7 @@ public class Hangman implements IHangman {
 				}
 			}
 			if (!found) {
-				maxWrongGuesses--;
+				maxWrongGuesses --;
 			}
 			if (maxWrongGuesses == 0) {
 				return null;
