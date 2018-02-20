@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.datastructure.hangman;
 
-import java.io.FileNotFoundException;
-
 public interface IHangman {
 /**
 * Set the dictionary
@@ -13,7 +11,6 @@ void setDictionary(String[] words);
 /**
 * Pick a random secret word from the dictionary and returns it
 * @return secret word or null
- * @throws FileNotFoundException 
 */
 String selectRandomSecretWord();
 /**

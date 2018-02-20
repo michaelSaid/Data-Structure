@@ -10,7 +10,7 @@ public class test {
 		String[]Wo= mygame.readFromFile("C:\\Users\\DELL\\Desktop\\hangman.txt");
 		mygame.setDictionary(Wo);
 		mygame.selectRandomSecretWord();
-		mygame.setMaxWrongGuesses(3);
+		mygame.setMaxWrongGuesses(5);
 		System.out.println(mygame.GuessWord);
 		Scanner inp = new Scanner(System.in);
 		String in = "0";
@@ -20,7 +20,7 @@ public class test {
 			 if(in!=null)
 			System.out.println(in);
 	}
-		System.out.println("the end");
+		System.out.println("game over");
 
 }
 }
