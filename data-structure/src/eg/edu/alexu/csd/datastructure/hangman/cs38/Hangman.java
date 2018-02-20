@@ -17,23 +17,23 @@ public class Hangman implements IHangman {
 	String[] dictionary;
 	String secretWord;
 	int maxWrongGuesses;
-	String guessWord = "-";
+	String guessWord;
 
 	@Override
 	public void setDictionary(String[] words) {
 		// TODO Auto-generated method stub
-
+		if (dictionary == null) {
+			throw new RuntimeException();
+		}
 		dictionary = words;
 	}
 
 	@Override
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
-		if (dictionary == null) {
-			throw new RuntimeException();
-		}
 		Random ran = new Random();
 			secretWord = dictionary[ran.nextInt(dictionary.length)];
+			guessWord = "-";
 			for (int i = 1; i < secretWord.length(); i++) {
 				guessWord += "-";
 			}
@@ -43,7 +43,7 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())||secretWord.equals(guessWord)) {
+		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())||secretWord.equals(guessWord)||secretWord==null) {
 			throw new RuntimeException();
 		}
 		if (c == null) {
