@@ -59,8 +59,8 @@ public class Hangman implements IHangman {
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 			boolean found = false;
 			for (int i = 0; i < secretWord.length(); i++) {
-				String sub = secretWord.substring(i, i + 1);
-				if (sub.equalsIgnoreCase(c.toString())) {
+				String subs = secretWord.substring(i, i + 1);
+				if (subs.equalsIgnoreCase(c.toString())) {
 					String temp = guessWord;
 					guessWord = temp.substring(0, i);
 					guessWord += secretWord.charAt(i);
@@ -88,7 +88,6 @@ public class Hangman implements IHangman {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	public String[] readFromFile(final String name) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		try {
