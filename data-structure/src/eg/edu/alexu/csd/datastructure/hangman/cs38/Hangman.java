@@ -20,7 +20,7 @@ public class Hangman implements IHangman {
 	String guessWord;
 
 	@Override
-	public void setDictionary(String[] words) {
+	public void setDictionary(final String[] words) {
 		// TODO Auto-generated method stub
 		dictionary = words;
 	}
@@ -41,7 +41,7 @@ public class Hangman implements IHangman {
 	}
 
 	@Override
-	public String guess(Character c) throws Exception {
+	public String guess(final Character c) throws Exception {
 		// TODO Auto-generated method stub
 		if (maxWrongGuesses == null || secretWord.trim().isEmpty() || secretWord == null) {
 			throw new Exception();
@@ -72,7 +72,7 @@ public class Hangman implements IHangman {
 	}
 
 	@Override
-	public void setMaxWrongGuesses(Integer max) {
+	public void setMaxWrongGuesses(final Integer max) {
 		// TODO Auto-generated method stub
 		if (max == null) {
 			maxWrongGuesses = 1;
@@ -82,23 +82,27 @@ public class Hangman implements IHangman {
 	}
 
 	@SuppressWarnings("resource")
-	public String[] readFromFile(String name) throws FileNotFoundException {
+	public String[] readFromFile(final String name) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		String[] in = new String[100];
 		try {
 			Scanner input = new Scanner(System.in);
 			File file = new File(name);
 			input = new Scanner(file);
-			int i = 0;
+			int size = 0, i = 0;
+			while (input.hasNextLine()) {
+				input.nextLine();
+				size++;
+			}
+			String[] in = new String[size];
 			while (input.hasNextLine()) {
 				in[i] = input.nextLine();
 				i++;
 			}
 			input.close();
-
+			return in;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		return in;
+		return null;
 	}
 }
