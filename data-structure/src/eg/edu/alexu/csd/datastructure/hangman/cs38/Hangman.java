@@ -14,6 +14,9 @@ import eg.edu.alexu.csd.datastructure.hangman.IHangman;
  */
 public class Hangman implements IHangman {
 
+	/**
+	 * Description of the variable here.
+	 */
 	String[] dictionary;
 	String secretWord;
 	Integer maxWrongGuesses;
@@ -87,8 +90,11 @@ public class Hangman implements IHangman {
 			maxWrongGuesses = max;
 		}
 	}
-
-	public String[] readFromFile(final String name) throws FileNotFoundException {
+	/**
+	 * to read from file.
+	 */
+	public String[] readFromFile(final String name) 
+			throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		try {
 			Scanner input = new Scanner(System.in);
