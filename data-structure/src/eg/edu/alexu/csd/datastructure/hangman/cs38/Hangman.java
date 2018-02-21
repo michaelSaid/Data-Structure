@@ -16,7 +16,7 @@ public class Hangman implements IHangman {
 
 	String[] dictionary;
 	String secretWord;
-	int maxWrongGuesses;
+	Integer maxWrongGuesses;
 	String guessWord;
 
 	@Override
@@ -43,9 +43,12 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())
-				|| secretWord.equals(guessWord) || secretWord == null) {
+		if (maxWrongGuesses == null || secretWord.trim().isEmpty() || secretWord == null) {
 			throw new Exception();
+		}
+
+		if (maxWrongGuesses == 0) {
+			return null;
 		}
 		if (c == null) {
 			return guessWord;
@@ -71,10 +74,10 @@ public class Hangman implements IHangman {
 	@Override
 	public void setMaxWrongGuesses(Integer max) {
 		// TODO Auto-generated method stub
-		if (max != null && max > 0) {
-			maxWrongGuesses = max.intValue();
-		} else {
+		if (max == null) {
 			maxWrongGuesses = 1;
+		} else {
+			maxWrongGuesses = max;
 		}
 	}
 
