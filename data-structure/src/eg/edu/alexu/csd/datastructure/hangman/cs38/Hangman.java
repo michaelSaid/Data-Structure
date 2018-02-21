@@ -22,25 +22,22 @@ public class Hangman implements IHangman {
 	@Override
 	public void setDictionary(String[] words) {
 		// TODO Auto-generated method stub
-		if (words == null) {
-			throw new RuntimeException();
-		}
 		dictionary = words;
 	}
 
 	@Override
 	public String selectRandomSecretWord() {
 		// TODO Auto-generated method stub
-		if(dictionary.length>0) {
-		Random ran = new Random();
-		secretWord = dictionary[ran.nextInt(dictionary.length)];
-		guessWord = "-";
-		for (int i = 1; i < secretWord.length(); i++) {
-			guessWord += "-";
+		if (dictionary != null) {
+			Random ran = new Random();
+			secretWord = dictionary[ran.nextInt(dictionary.length)];
+			guessWord = "-";
+			for (int i = 1; i < secretWord.length(); i++) {
+				guessWord += "-";
+			}
+			return secretWord;
 		}
-		return secretWord;
-		}
-		return null ;
+		return null;
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class Hangman implements IHangman {
 		// TODO Auto-generated method stub
 		if (maxWrongGuesses == 0 || (secretWord.trim().isEmpty() || secretWord.isEmpty())
 				|| secretWord.equals(guessWord) || secretWord == null) {
-			throw new RuntimeException();
+			throw new Exception();
 		}
 		if (c == null) {
 			return guessWord;
