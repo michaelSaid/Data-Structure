@@ -43,8 +43,8 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(final Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (maxWrongGuesses == null || secretWord.trim().isEmpty() 
-				|| secretWord == null) {
+		if (maxWrongGuesses == null || 
+			secretWord.trim().isEmpty() || secretWord == null) {
 			throw new Exception();
 		}
 
@@ -57,10 +57,9 @@ public class Hangman implements IHangman {
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 			boolean found = false;
 			for (int i = 0; i < secretWord.length(); i++) {
-				if (secretWord.substring(i, i + 1).
-						equalsIgnoreCase(c.toString())) {
-					guessWord = guessWord.substring(0, i) 
-							+ secretWord.charAt(i) + 
+				if (secretWord.substring(i, i + 1).equalsIgnoreCase(c.toString())) {
+					guessWord = guessWord.substring(0, i) +
+							secretWord.charAt(i) + 
 							guessWord.substring(i + 1);
 					found = true;
 				}
