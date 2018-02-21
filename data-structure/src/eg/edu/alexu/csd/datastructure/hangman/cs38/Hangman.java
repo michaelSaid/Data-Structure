@@ -59,7 +59,8 @@ public class Hangman implements IHangman {
 		if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 			boolean found = false;
 			for (int i = 0; i < secretWord.length(); i++) {
-				if (secretWord.substring(i, i + 1).equalsIgnoreCase(c.toString())) {
+				String sub = secretWord.substring(i, i + 1);
+				if (sub.equalsIgnoreCase(c.toString())) {
 					String temp = guessWord;
 					guessWord = temp.substring(0, i);
 					guessWord += secretWord.charAt(i);
