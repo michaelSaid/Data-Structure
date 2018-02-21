@@ -43,7 +43,10 @@ public class Hangman implements IHangman {
 	@Override
 	public String guess(final Character c) throws Exception {
 		// TODO Auto-generated method stub
-		if (maxWrongGuesses == null || secretWord.trim().isEmpty() || secretWord == null) {
+		if (maxWrongGuesses == null) {
+			throw new Exception();
+		}
+		if (secretWord.trim().isEmpty() || secretWord == null) {
 			throw new Exception();
 		}
 
