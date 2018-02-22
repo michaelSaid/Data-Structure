@@ -1,9 +1,6 @@
 package eg.edu.alexu.csd.datastructure.hangman.cs38;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
 
 import eg.edu.alexu.csd.datastructure.hangman.IHangman;
 
