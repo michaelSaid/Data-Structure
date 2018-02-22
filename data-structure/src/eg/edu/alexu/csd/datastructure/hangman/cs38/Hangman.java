@@ -15,7 +15,10 @@ import eg.edu.alexu.csd.datastructure.hangman.IHangman;
 public class Hangman implements IHangman {
 
 	/**
-	 * Description of the variable here.
+	 * dictionary is array of words.
+	 * secretWord is a word of game.
+	 * maxWrongGuesses is number of try.
+	 * guessWord is a ....
 	 */
 	String[] dictionary;
 	String secretWord;
@@ -89,32 +92,5 @@ public class Hangman implements IHangman {
 		} else {
 			maxWrongGuesses = max;
 		}
-	}
-	/**
-	 * to read from file.
-	 */
-	public String[] readFromFile(final String name) 
-			throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		try {
-			Scanner input = new Scanner(System.in);
-			File file = new File(name);
-			input = new Scanner(file);
-			int size = 0, i = 0;
-			while (input.hasNextLine()) {
-				input.nextLine();
-				size++;
-			}
-			String[] in = new String[size];
-			while (input.hasNextLine()) {
-				in[i] = input.nextLine();
-				i++;
-			}
-			input.close();
-			return in;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
 	}
 }
