@@ -13,9 +13,15 @@ public class Hangman implements IHangman {
 
 	/**
 	 * dictionary is array of words.
-	 * secretWord is a word of game.
-	 * maxWrongGuesses is number of try.
-	 * guessWord is a ....
+	 */
+	/**
+	 * dictionary is array of words.
+	 */
+	/**
+	 * dictionary is array of words.
+	 */
+	/**
+	 * dictionary is array of words.
 	 */
 	String[] dictionary;
 	String secretWord;
