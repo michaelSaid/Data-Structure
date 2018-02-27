@@ -6,7 +6,9 @@ import java.awt.Point;
 
 import org.junit.jupiter.api.Test;
 
-public class Mytest {
+import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
+
+public class Mytest implements IPlayersFinder {
 
   @Test
   public void testcase1() {
@@ -109,11 +111,11 @@ public class Mytest {
     Point[] cases = new Point[] { new Point(6, 1) };
     assertArrayEquals(p, cases);
   }
-  
+
   @Test
   public void testcase11() {
     MyiceHockey game = new MyiceHockey();
-    String[] s = { "1ss","s1s","ss1"};
+    String[] s = { "1ss", "s1s", "ss1" };
     Point[] p = game.findPlayers(s, 1, 5);
     assertArrayEquals(p, null);
   }
