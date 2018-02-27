@@ -10,7 +10,9 @@ import java.util.Queue;
  *
  */
 import eg.edu.alexu.csd.datastructure.iceHockey.IPlayersFinder;
-
+/**
+ * the solve.
+**/
 public class MyiceHockey implements IPlayersFinder {
 
   /**
