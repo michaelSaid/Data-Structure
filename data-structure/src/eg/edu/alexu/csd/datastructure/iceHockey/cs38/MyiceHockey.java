@@ -20,7 +20,7 @@ public class MyiceHockey implements IPlayersFinder {
   /**
    * team is a num of team.
    **/
-  Integer team;
+  Integer te;
   /**
    * length with x.
    **/
@@ -55,10 +55,11 @@ public class MyiceHockey implements IPlayersFinder {
   int maxY;
 
   @Override
-  public Point[] findPlayers(String[] photo,final int team,final int threshold){
+  public final Point[] findPlayers(final String[] photo, final int team,
+      final int threshold) {
     // TODO Auto-generated method stub
     this.ph = photo;
-    this.team = team;
+    this.te = team;
     if (photo == null) {
       return null;
     }
@@ -90,15 +91,25 @@ public class MyiceHockey implements IPlayersFinder {
     Arrays.sort(points, new Sort());
     return points;
   }
+
   /**
    * function to check.
-   **/
+   * @param row
+   * num of rows
+   * @param col
+   * num of col
+   * @return ... .
+   */
   public final boolean isVaild(final int row, final int col) {
     return row >= 0 && row < lenX && col >= 0 && col < lenY;
   }
   /**
-   * function to ...
-   **/
+   * function to check.
+   * @param row
+   * num of rows
+   * @param col
+   * num of col
+   */
   public final void setDefault(final int col, final int row) {
     if (miniX > 2 * col) {
       miniX = 2 * col;
@@ -115,8 +126,12 @@ public class MyiceHockey implements IPlayersFinder {
     }
   }
   /**
-   * function to ....
-   **/
+   * function to check.
+   * @param row
+   * num of rows
+   * @param col
+   * num of col
+   */
   public final void setPo(final int col, final int row) {
     miniX = 2 * col;
     miniY = 2 * row;
@@ -124,12 +139,16 @@ public class MyiceHockey implements IPlayersFinder {
     maxY = 2 * (row + 1);
   }
   /**
-   * function of DFS.
-   **/
+   * function to DFS .
+   * @param row
+   * num of rows
+   * @param col
+   * num of col
+   */
   public final void dFS(final int row, final int col) {
 
     if (isVaild(row, col)) {
-      if (photo[col].charAt(row) == team.toString().charAt(0)
+      if (ph[col].charAt(row) == te.toString().charAt(0)
           && !visit[row][col]) {
         visit[row][col] = true;
         len++;
@@ -147,6 +166,7 @@ public class MyiceHockey implements IPlayersFinder {
   }
   /**
    * function to set points.
+   * @return ... .
    **/
   public final Point setPoint() {
     Point p = new Point();

@@ -2,10 +2,9 @@ package eg.edu.alexu.csd.datastructure.iceHockey.cs38;
 
 import java.awt.Point;
 import java.util.Comparator;
-/*
+/**
  * sort is function to sort points
 **/
-
 public class Sort implements Comparator<Point> {
 
   @Override
