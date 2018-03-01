@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.datastructure.iceHockey.cs38;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.awt.Point;
 
 import org.junit.Assert;
@@ -93,7 +91,7 @@ public class Mytest {
     final int team = 4;
     final int threashold = 16;
     Point[] p = game.findPlayers(s, team, threashold);
-    assertArrayEquals(p, null);
+    Assert.assertArrayEquals(p, null);
   }
 
   /**
