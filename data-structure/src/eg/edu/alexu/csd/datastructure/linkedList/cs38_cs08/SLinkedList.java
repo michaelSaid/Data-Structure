@@ -84,7 +84,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 && index > size) {
+    if (index < 0 && index > size-1) {
       throw new RuntimeException();
     }
     Node newNode = new Node(element, null);
@@ -209,7 +209,7 @@ public class SLinkedList implements ILinkedList {
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
     if (head == null) {
-      return false;
+      throw new RuntimeException();
     }
     boolean found = false;
     Node node = head;

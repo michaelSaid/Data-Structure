@@ -120,7 +120,7 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 && index > size) {
+    if (index < 0 && index > size-1) {
       throw new RuntimeException();
     }
     Node newNode = new Node(element, null, null);
@@ -262,7 +262,7 @@ public class DLinkedList implements ILinkedList {
     // TODO Auto-generated method stub
     if (fromIndex > toIndex || fromIndex > size - 1 || fromIndex < 0
         || toIndex < 0 || toIndex > size - 1 || head.getNext() == null) {
-      return null;
+      throw new RuntimeException();
     }
     DLinkedList sub = new DLinkedList();
     int s = toIndex - fromIndex + 1;
@@ -277,7 +277,7 @@ public class DLinkedList implements ILinkedList {
     // TODO Auto-generated method stub
     if (head.getNext().getElement() == o
         || tailer.getPrev().getElement() == o) {
-      return true;
+      throw new RuntimeException();
     }
     boolean found = false;
     Node node = head.getNext().getNext();
