@@ -84,17 +84,17 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 && index > size-1) {
-      throw new RuntimeException();
-    }
     Node newNode = new Node(element, null);
     if (head == null) {
       head = newNode;
       size++;
       return;
     }
+    if (index < 1 || index > size + 1) {
+      throw new RuntimeException();
+    }
     Node node = head;
-    for (int i = 0; i < index - 1 && node != null; i++) {
+    for (int i = 1; i < index - 1 && node != null; i++) {
       node = node.getNext();
     }
     newNode.setNext(node.getNext());
@@ -125,11 +125,11 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final Object get(final int index) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 1 || index > size + 1) {
       throw new RuntimeException();
     }
     Node node = head;
-    for (int i = 0; i < index && node != null; i++) {
+    for (int i = 1; i < index && node != null; i++) {
       node = node.getNext();
     }
     return node.getElement();
@@ -138,11 +138,11 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void set(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 1 || index > size + 1) {
       throw new RuntimeException();
     }
     Node node = head;
-    for (int i = 0; i < index && node != null; i++) {
+    for (int i = 1; i < index && node != null; i++) {
       node = node.getNext();
     }
     node.setElement(element);
@@ -166,16 +166,16 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void remove(final int index) {
     // TODO Auto-generated method stub
-    if (head == null || index < 0 || index > size - 1) {
+    if (head == null || index < 1 || index > size + 1) {
       throw new RuntimeException();
     }
-    if (index == 0) {
+    if (index == 1) {
       head = head.getNext();
       size--;
       return;
     }
     Node node = head;
-    for (int i = 0; i < index - 1 && node != null; i++) {
+    for (int i = 1; i < index - 1 && node != null; i++) {
       node = node.getNext();
     }
     node.setNext(node.getNext().getNext());
