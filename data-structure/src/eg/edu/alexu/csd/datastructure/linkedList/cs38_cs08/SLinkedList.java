@@ -84,14 +84,14 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
-      throw new RuntimeException();
-    }
     Node newNode = new Node(element, null);
     if (head == null) {
       head = newNode;
       size++;
       return;
+    }
+    if (index < 0 || index > size) {
+      throw new RuntimeException();
     }
     Node node = head;
     for (int i = 0; i < index - 1 && node != null; i++) {
@@ -179,7 +179,6 @@ public class SLinkedList implements ILinkedList {
       node = node.getNext();
     }
     node.setNext(node.getNext().getNext());
-    node.getNext().setNext(null);
     size--;
     return;
   }
