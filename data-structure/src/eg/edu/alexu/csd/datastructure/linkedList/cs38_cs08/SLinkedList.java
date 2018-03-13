@@ -79,6 +79,7 @@ public class SLinkedList implements ILinkedList {
   /** Default constructor that creates an empty list. */
   public SLinkedList() {
     // TODO Auto-generated constructor stub
+    size = 0 ;
   }
 
   @Override
