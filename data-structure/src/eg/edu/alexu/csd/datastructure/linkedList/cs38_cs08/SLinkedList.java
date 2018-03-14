@@ -125,7 +125,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final Object get(final int index) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 0 || index > size - 1 || head == null) {
       throw new RuntimeException();
     }
     Node node = head;
@@ -138,7 +138,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void set(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 0 || index > size - 1 || head == null) {
       throw new RuntimeException();
     }
     Node node = head;
@@ -207,7 +207,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
-    if (head == null) {
+    if (size == 0 || head == null) {
       throw new RuntimeException();
     }
     boolean found = false;
