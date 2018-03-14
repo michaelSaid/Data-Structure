@@ -192,7 +192,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final SLinkedList sublist(final int fromIndex, final int toIndex) {
     // TODO Auto-generated method stub
-    if (fromIndex > toIndex || fromIndex > size - 1 || fromIndex < 0
+    if (fromIndex > size - 1 || fromIndex > toIndex || fromIndex < 0
         || toIndex < 0 || toIndex > size - 1 || head == null) {
       throw new RuntimeException();
     }
