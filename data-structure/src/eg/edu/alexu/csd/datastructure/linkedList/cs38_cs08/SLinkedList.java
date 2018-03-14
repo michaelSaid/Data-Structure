@@ -6,11 +6,11 @@ public class SLinkedList implements ILinkedList {
   /**
    * head node of the list.
    */
-  private Node head;
+  public Node head;
   /**
    * size of the list.
    */
-  private int size;
+  public int size;
 
   /** Node of a singly linked list of strings. */
   public class Node {
@@ -208,7 +208,7 @@ public class SLinkedList implements ILinkedList {
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
     if (head == null) {
-      return false;
+      throw new RuntimeException();
     }
     boolean found = false;
     Node node = head;
