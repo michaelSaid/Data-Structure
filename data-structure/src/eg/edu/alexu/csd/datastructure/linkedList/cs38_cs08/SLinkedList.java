@@ -1,7 +1,9 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08;
 
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
-
+/**
+ * singly linked list .
+ */
 public class SLinkedList implements ILinkedList {
   /**
    * head node of the list.
@@ -25,7 +27,7 @@ public class SLinkedList implements ILinkedList {
 
     /**
      * Creates a node with the given element and next node.
-     * 
+     *
      * @param newelement
      *          ...
      * @param newnext
@@ -38,7 +40,7 @@ public class SLinkedList implements ILinkedList {
 
     /**
      * Returns the next node of this node.
-     * 
+     *
      * @return next
      */
     public Node getNext() {
@@ -47,7 +49,7 @@ public class SLinkedList implements ILinkedList {
 
     /**
      * Sets the next node of this node.
-     * 
+     *
      * @param newnext
      *          next node.
      */
@@ -57,7 +59,7 @@ public class SLinkedList implements ILinkedList {
 
     /**
      * Returns the element of this node.
-     * 
+     *
      * @return element
      */
     public Object getElement() {
@@ -66,7 +68,7 @@ public class SLinkedList implements ILinkedList {
 
     /**
      * Sets the element of this node.
-     * 
+     *
      * @param newelement
      *          element of node.
      */

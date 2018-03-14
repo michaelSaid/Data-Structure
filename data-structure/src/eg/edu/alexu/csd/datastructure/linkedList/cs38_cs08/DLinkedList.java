@@ -1,20 +1,22 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08;
 
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
-
+/**
+ * doubly linked list .
+ */
 public class DLinkedList implements ILinkedList {
   /**
    * head node of the list.
    */
-  private Node head;
+  public Node head;
   /**
    * tailer node of the end of list.
    */
-  private Node tailer;
+  public Node tailer;
   /**
    * size of the list.
    */
-  private int size;
+  public int size;
 
   /** Node of a singly linked list of strings. */
   public class Node {
@@ -33,7 +35,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Creates a node with the given element and next node.
-     * 
+     *
      * @param newelement
      *          ...
      * @param newnext
@@ -50,7 +52,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Returns the next node of this node.
-     * 
+     *
      * @return next
      */
     public Node getNext() {
@@ -59,7 +61,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Sets the next node of this node.
-     * 
+     *
      * @param newnext
      *          next node.
      */
@@ -69,7 +71,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Returns the element of this node.
-     * 
+     *
      * @return element
      */
     public Object getElement() {
@@ -78,7 +80,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Sets the element of this node.
-     * 
+     *
      * @param newelement
      *          element of node.
      */
@@ -88,7 +90,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Returns the previous node of this node.
-     * 
+     *
      * @return prev
      */
     public Node getPrev() {
@@ -97,7 +99,7 @@ public class DLinkedList implements ILinkedList {
 
     /**
      * Sets the prev node of this node.
-     * 
+     *
      * @param newprev
      *          prev node.
      */
@@ -175,7 +177,7 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final Object get(final int index) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 0 || index > size - 1 || size == 0) {
       throw new RuntimeException();
     }
     Node node = head.getNext();
@@ -188,7 +190,7 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final void set(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1) {
+    if (index < 0 || index > size - 1 || size == 0) {
       throw new RuntimeException();
     }
     Node node = head.getNext();
@@ -202,8 +204,10 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final void clear() {
     // TODO Auto-generated method stub
-    new DLinkedList();
-
+    size = 0;
+    head = new Node(null, null, null);
+    tailer = new Node(null, null, head);
+    head.setNext(tailer);
   }
 
   @Override
@@ -215,8 +219,8 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final void remove(final int index) {
     // TODO Auto-generated method stub
-    if (head.getNext() == null || index < 0 || index > size - 1) {
-      return;
+    if (head.getNext() == null || index < 0 || index > size - 1 || size == 0) {
+      throw new RuntimeException();
     }
     Node node = head.getNext();
     if (index == 0) {
@@ -261,7 +265,8 @@ public class DLinkedList implements ILinkedList {
   public final DLinkedList sublist(final int fromIndex, final int toIndex) {
     // TODO Auto-generated method stub
     if (fromIndex > toIndex || fromIndex > size - 1 || fromIndex < 0
-        || toIndex < 0 || toIndex > size - 1 || head.getNext() == null) {
+        || toIndex < 0 || toIndex > size - 1 || head.getNext() == null
+        || size == 0) {
       throw new RuntimeException();
     }
     DLinkedList sub = new DLinkedList();
@@ -275,6 +280,9 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
+    if (size == 0) {
+      throw new RuntimeException();
+    }
     if (head.getNext().getElement() == o
         || tailer.getPrev().getElement() == o) {
       return true;
