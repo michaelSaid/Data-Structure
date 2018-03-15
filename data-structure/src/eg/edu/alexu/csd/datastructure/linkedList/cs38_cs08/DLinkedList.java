@@ -295,16 +295,14 @@ public class DLinkedList implements ILinkedList {
         || tailer.getPrev().getElement() == o) {
       return true;
     }
-    boolean found = false;
     Node node = head.getNext().getNext();
     while (node != tailer.getPrev()) {
-      if (node.getElement() == o) {
-        found = true;
-        break;
+      if (node.getElement().equals(o)) {
+        return true;
       }
       node = node.getNext();
     }
-    return found;
+    return false;
   }
 
 }
