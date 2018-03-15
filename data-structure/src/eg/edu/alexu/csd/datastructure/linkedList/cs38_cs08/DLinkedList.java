@@ -1,6 +1,7 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08;
 
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
+
 /**
  * doubly linked list .
  */
@@ -122,12 +123,23 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
+    if (index < 0 || index > size) {
+      throw new RuntimeException();
+    }
     Node newNode = new Node(element, null, null);
-    if (head.getNext() == null) {
-      head.setNext(newNode);
-      newNode.setPrev(head);
-      newNode.setNext(tailer);
-      tailer.setPrev(newNode);
+    Node node = head.getNext();
+    if (index == 0) {
+      if (head.getNext() == null) {
+        head.setNext(newNode);
+        newNode.setPrev(head);
+        newNode.setNext(tailer);
+        tailer.setPrev(newNode);
+      } else {
+        newNode.setNext(node);
+        node.setPrev(newNode);
+        newNode.setPrev(head);
+        head.setNext(newNode);
+      }
       size++;
       return;
     }
@@ -140,10 +152,6 @@ public class DLinkedList implements ILinkedList {
       size++;
       return;
     }
-    if (index < 0 || index > size) {
-      throw new RuntimeException();
-    }
-    Node node = head.getNext();
     for (int i = 0; i < index - 1 && node != tailer; i++) {
       node = node.getNext();
     }

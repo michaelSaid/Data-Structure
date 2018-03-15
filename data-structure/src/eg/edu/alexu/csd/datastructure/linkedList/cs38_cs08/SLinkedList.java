@@ -1,6 +1,7 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08;
 
 import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
+
 /**
  * singly linked list .
  */
@@ -33,9 +34,9 @@ public class SLinkedList implements ILinkedList {
      * @param newnext
      *          ....
      */
-    public Node(final Object newelement, final Node newnext) {
+    public Node(final Object newElement, final Node newnext) {
       this.next = newnext;
-      this.element = newelement;
+      this.element = newElement;
     }
 
     /**
@@ -86,23 +87,28 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void add(final int index, final Object element) {
     // TODO Auto-generated method stub
-    Node newNode = new Node(element, null);
-    if (head == null) {
-      head = newNode;
-      size++;
-      return;
-    }
     if (index < 0 || index > size) {
       throw new RuntimeException();
     }
+    Node newNode = new Node(element, null);
     Node node = head;
+    if (index == 0) {
+      if (head == null) {
+        head = newNode;
+      } else {
+        newNode.setNext(head);
+        head = newNode;
+      }
+      size++;
+      return;
+    }
     for (int i = 0; i < index - 1 && node != null; i++) {
       node = node.getNext();
     }
     newNode.setNext(node.getNext());
     node.setNext(newNode);
     size++;
-    return;
+
   }
 
   @Override
@@ -121,13 +127,12 @@ public class SLinkedList implements ILinkedList {
     node.setNext(newNode);
     newNode.setNext(null);
     size++;
-    return;
   }
 
   @Override
   public final Object get(final int index) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1 || head == null) {
+    if (index < 0 || index > size - 1 || size == 0) {
       throw new RuntimeException();
     }
     Node node = head;
@@ -140,7 +145,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void set(final int index, final Object element) {
     // TODO Auto-generated method stub
-    if (index < 0 || index > size - 1 || head == null) {
+    if (index < 0 || index > size - 1 || size == 0) {
       throw new RuntimeException();
     }
     Node node = head;
@@ -168,7 +173,7 @@ public class SLinkedList implements ILinkedList {
   @Override
   public final void remove(final int index) {
     // TODO Auto-generated method stub
-    if (head == null || index < 0 || index > size - 1) {
+    if (size == 0 || index < 0 || index > size - 1) {
       throw new RuntimeException();
     }
     if (index == 0) {
@@ -195,7 +200,7 @@ public class SLinkedList implements ILinkedList {
   public final SLinkedList sublist(final int fromIndex, final int toIndex) {
     // TODO Auto-generated method stub
     if (fromIndex > size - 1 || fromIndex > toIndex || fromIndex < 0
-        || toIndex < 0 || toIndex > size - 1 || head == null) {
+        || toIndex < 0 || toIndex > size - 1 || size == 0) {
       throw new RuntimeException();
     }
     SLinkedList sub = new SLinkedList();
