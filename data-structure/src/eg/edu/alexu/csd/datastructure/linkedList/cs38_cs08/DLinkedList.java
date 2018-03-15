@@ -291,12 +291,8 @@ public class DLinkedList implements ILinkedList {
     if (size == 0) {
       throw new RuntimeException();
     }
-    if (head.getNext().getElement().equals(o)
-        || tailer.getPrev().getElement().equals(o)) {
-      return true;
-    }
     Node node = head.getNext();
-    while (node != tailer) {
+    for (int i = 0; i < size && node != null; i++) {
       if (node.getElement().equals(o)) {
         return true;
       }
