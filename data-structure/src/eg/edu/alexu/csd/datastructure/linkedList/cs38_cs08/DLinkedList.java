@@ -288,8 +288,7 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
-    if (size == 0 || head.getNext().getElement() == null
-        || tailer.getPrev().getElement() == null) {
+    if (size == 0) {
       throw new RuntimeException();
     }
     if (head.getNext().getElement().equals(o)
