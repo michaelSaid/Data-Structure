@@ -288,15 +288,16 @@ public class DLinkedList implements ILinkedList {
   @Override
   public final boolean contains(final Object o) {
     // TODO Auto-generated method stub
-    if (size == 0) {
+    if (size == 0 || head.getNext().getElement() == null
+        || tailer.getPrev().getElement() == null) {
       throw new RuntimeException();
     }
-    if (head.getNext().getElement() == o
-        || tailer.getPrev().getElement() == o) {
+    if (head.getNext().getElement().equals(o)
+        || tailer.getPrev().getElement().equals(o)) {
       return true;
     }
     Node node = head.getNext().getNext();
-    while (node != tailer.getPrev()) {
+    while (node != tailer) {
       if (node.getElement().equals(o)) {
         return true;
       }
