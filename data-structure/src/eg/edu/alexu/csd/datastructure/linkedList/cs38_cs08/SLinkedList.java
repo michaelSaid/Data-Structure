@@ -217,16 +217,14 @@ public class SLinkedList implements ILinkedList {
     if (size == 0 || head == null) {
       throw new RuntimeException();
     }
-    boolean found = false;
     Node node = head;
     while (node != null) {
-      if (node.getElement() == o) {
-        found = true;
-        break;
+      if (node.getElement().equals(o)) {
+        return true;
       }
       node = node.getNext();
     }
-    return found;
+    return false;
   }
 
 }
