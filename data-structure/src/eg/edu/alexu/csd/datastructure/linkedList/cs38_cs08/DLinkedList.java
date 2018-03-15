@@ -295,7 +295,7 @@ public class DLinkedList implements ILinkedList {
         || tailer.getPrev().getElement().equals(o)) {
       return true;
     }
-    Node node = head.getNext().getNext();
+    Node node = head.getNext();
     while (node != tailer) {
       if (node.getElement().equals(o)) {
         return true;
