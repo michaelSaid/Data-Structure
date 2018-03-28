@@ -353,6 +353,10 @@ public class Solve implements IPolynomialSolver {
       }
     }
     sort(r);
+    if (r.isEmpty()) {
+      int[][] zero = new int[][] {{0, 0}};
+      return zero;
+    }
     int[][] terms = new int[r.size()][2];
     for (int i = 0; i < r.size(); i++) {
       Term te = (Term) r.get(i);
