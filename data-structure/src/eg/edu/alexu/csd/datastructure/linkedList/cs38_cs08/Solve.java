@@ -2,24 +2,29 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08;
 
 import eg.edu.alexu.csd.datastructure.linkedList.IPolynomialSolver;
 
-public class solve implements IPolynomialSolver {
+/**
+ *
+ * @author DELL
+ *
+ */
+public class Solve implements IPolynomialSolver {
 
   /**
    *
    */
-  DLinkedList A;
+  DLinkedList a;
   /**
    *
    */
-  DLinkedList B;
+  DLinkedList b;
   /**
    *
    */
-  DLinkedList C;
+  DLinkedList c;
   /**
    *
    */
-  DLinkedList R;
+  DLinkedList r;
 
   /**
   *
@@ -103,13 +108,13 @@ public class solve implements IPolynomialSolver {
       }
     }
     if (poly == 'A') {
-      A = temp;
+      a = temp;
     } else if (poly == 'B') {
-      B = temp;
+      b = temp;
     } else if (poly == 'C') {
-      C = temp;
+      c = temp;
     } else if (poly == 'R') {
-      R = temp;
+      r = temp;
     } else {
       throw new RuntimeException();
     }
@@ -120,13 +125,13 @@ public class solve implements IPolynomialSolver {
     // TODO Auto-generated method stub
     DLinkedList temp = new DLinkedList();
     if (poly == 'A') {
-      temp = A;
+      temp = a;
     } else if (poly == 'B') {
-      temp = B;
+      temp = b;
     } else if (poly == 'C') {
-      temp = C;
+      temp = c;
     } else if (poly == 'R') {
-      temp = R;
+      temp = r;
     } else {
       throw new RuntimeException();
     }
@@ -197,14 +202,14 @@ public class solve implements IPolynomialSolver {
   @Override
   public final void clearPolynomial(final char poly) {
     // TODO Auto-generated method stub
-    if (poly == 'A' && A != null) {
-      A.clear();
-    } else if (poly == 'B' && B != null) {
-      B.clear();
-    } else if (poly == 'C' && C != null) {
-      C.clear();
-    } else if (poly == 'R' && R != null) {
-      R.clear();
+    if (poly == 'A' && a != null) {
+      a.clear();
+    } else if (poly == 'B' && b != null) {
+      b.clear();
+    } else if (poly == 'C' && c != null) {
+      c.clear();
+    } else if (poly == 'R' && r != null) {
+      r.clear();
     } else {
       throw new RuntimeException();
     }
@@ -215,13 +220,13 @@ public class solve implements IPolynomialSolver {
     // TODO Auto-generated method stub
     DLinkedList temp = new DLinkedList();
     if (poly == 'A') {
-      temp = A;
+      temp = a;
     } else if (poly == 'B') {
-      temp = B;
+      temp = b;
     } else if (poly == 'C') {
-      temp = C;
+      temp = c;
     } else if (poly == 'R') {
-      temp = R;
+      temp = r;
     } else {
       throw new RuntimeException();
     }
@@ -245,13 +250,13 @@ public class solve implements IPolynomialSolver {
     DLinkedList temp1 = new DLinkedList();
     DLinkedList temp2 = new DLinkedList();
     if (poly1 == 'A') {
-      temp1 = A;
+      temp1 = a;
     } else if (poly1 == 'B') {
-      temp1 = B;
+      temp1 = b;
     } else if (poly1 == 'C') {
-      temp1 = C;
+      temp1 = c;
     } else if (poly1 == 'R') {
-      temp1 = R;
+      temp1 = r;
     } else {
       throw new RuntimeException();
     }
@@ -259,25 +264,25 @@ public class solve implements IPolynomialSolver {
       throw new RuntimeException();
     }
     if (poly2 == 'A') {
-      temp2 = A;
+      temp2 = a;
     } else if (poly2 == 'B') {
-      temp2 = B;
+      temp2 = b;
     } else if (poly2 == 'C') {
-      temp2 = C;
+      temp2 = c;
     } else if (poly2 == 'R') {
-      temp2 = R;
+      temp2 = r;
     } else {
       throw new RuntimeException();
     }
     if (temp2 == null || temp2.size() == 0) {
       throw new RuntimeException();
     }
-    R = new DLinkedList();
-    R = add2Poly(temp1, temp2);
-    sort(R);
-    int[][] terms = new int[R.size()][2];
-    for (int i = 0; i < R.size(); i++) {
-      Term te = (Term) R.get(i);
+    r = new DLinkedList();
+    r = add2Poly(temp1, temp2);
+    sort(r);
+    int[][] terms = new int[r.size()][2];
+    for (int i = 0; i < r.size(); i++) {
+      Term te = (Term) r.get(i);
       terms[i][0] = te.getCoff();
       terms[i][1] = te.getExp();
     }
@@ -290,13 +295,13 @@ public class solve implements IPolynomialSolver {
     DLinkedList temp1 = new DLinkedList();
     DLinkedList temp2 = new DLinkedList();
     if (poly1 == 'A') {
-      temp1 = A;
+      temp1 = a;
     } else if (poly1 == 'B') {
-      temp1 = B;
+      temp1 = b;
     } else if (poly1 == 'C') {
-      temp1 = C;
+      temp1 = c;
     } else if (poly1 == 'R') {
-      temp1 = R;
+      temp1 = r;
     } else {
       throw new RuntimeException();
     }
@@ -304,20 +309,20 @@ public class solve implements IPolynomialSolver {
       throw new RuntimeException();
     }
     if (poly2 == 'A') {
-      temp2 = A;
+      temp2 = a;
     } else if (poly2 == 'B') {
-      temp2 = B;
+      temp2 = b;
     } else if (poly2 == 'C') {
-      temp2 = C;
+      temp2 = c;
     } else if (poly2 == 'R') {
-      temp2 = R;
+      temp2 = r;
     } else {
       throw new RuntimeException();
     }
     if (temp2 == null || temp2.size() == 0) {
       throw new RuntimeException();
     }
-    R = new DLinkedList();
+    r = new DLinkedList();
     boolean[] t1 = new boolean[temp1.size()];
     boolean[] t2 = new boolean[temp2.size()];
     for (int i = 0; i < temp1.size(); i++) {
@@ -327,7 +332,7 @@ public class solve implements IPolynomialSolver {
           Term term2 = (Term) temp2.get(j);
           if (term1.getExp() == term2.getExp()) {
             Integer sum = term1.getCoff() - term2.getCoff();
-            R.add(new Term(sum, term1.getExp()));
+            r.add(new Term(sum, term1.getExp()));
             t1[i] = true;
             t2[j] = true;
             break;
@@ -335,20 +340,20 @@ public class solve implements IPolynomialSolver {
         }
       }
       if (!t1[i]) {
-        R.add(temp1.get(i));
+        r.add(temp1.get(i));
       }
     }
     for (int i = 0; i < temp2.size(); i++) {
       if (!t2[i]) {
         Term te = (Term) temp2.get(i);
         te.setCoff(te.getCoff() * -1);
-        R.add(te);
+        r.add(te);
       }
     }
-    sort(R);
-    int[][] terms = new int[R.size()][2];
-    for (int i = 0; i < R.size(); i++) {
-      Term te = (Term) R.get(i);
+    sort(r);
+    int[][] terms = new int[r.size()][2];
+    for (int i = 0; i < r.size(); i++) {
+      Term te = (Term) r.get(i);
       terms[i][0] = te.getCoff();
       terms[i][1] = te.getExp();
     }
@@ -361,11 +366,11 @@ public class solve implements IPolynomialSolver {
     DLinkedList temp1 = new DLinkedList();
     DLinkedList temp2 = new DLinkedList();
     if (poly1 == 'A') {
-      temp1 = A;
+      temp1 = a;
     } else if (poly1 == 'B') {
-      temp1 = B;
+      temp1 = b;
     } else if (poly1 == 'C') {
-      temp1 = C;
+      temp1 = c;
     } else {
       throw new RuntimeException();
     }
@@ -373,18 +378,18 @@ public class solve implements IPolynomialSolver {
       throw new RuntimeException();
     }
     if (poly2 == 'A') {
-      temp2 = A;
+      temp2 = a;
     } else if (poly2 == 'B') {
-      temp2 = B;
+      temp2 = b;
     } else if (poly2 == 'C') {
-      temp2 = C;
+      temp2 = c;
     } else {
       throw new RuntimeException();
     }
     if (temp2 == null || temp2.size() == 0) {
       throw new RuntimeException();
     }
-    R = new DLinkedList();
+    r = new DLinkedList();
     DLinkedList results = new DLinkedList();
     for (int i = 0; i < temp2.size(); i++) {
       DLinkedList result = new DLinkedList();
@@ -401,11 +406,11 @@ public class solve implements IPolynomialSolver {
         results = add2Poly(result, results);
       }
     }
-    R = results;
-    sort(R);
-    int[][] terms = new int[R.size()][2];
-    for (int i = 0; i < R.size(); i++) {
-      Term te = (Term) R.get(i);
+    r = results;
+    sort(r);
+    int[][] terms = new int[r.size()][2];
+    for (int i = 0; i < r.size(); i++) {
+      Term te = (Term) r.get(i);
       terms[i][0] = te.getCoff();
       terms[i][1] = te.getExp();
     }
