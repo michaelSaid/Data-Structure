@@ -148,17 +148,17 @@ public class Solve implements IPolynomialSolver {
         if (coff != 1 && coff != -1) {
           if (i != 0) {
             if (coff > 0) {
-              pol += "+ ";
+              pol += "+";
             } else {
-              pol += "- ";
+              pol += "-";
             }
           }
           coff = Math.abs(coff);
           pol += coff.toString();
         } else if (coff == 1 && i != 0) {
-          pol += "+ ";
+          pol += "+";
         } else if (coff == -1) {
-          pol += "- ";
+          pol += "-";
         }
         if (exp != 1) {
           pol += x + exp.toString();
@@ -168,9 +168,9 @@ public class Solve implements IPolynomialSolver {
       } else if (coff != 0 && exp < 0) {
         if (i != 0) {
           if (coff > 0) {
-            pol += "+ ";
+            pol += "+";
           } else {
-            pol += "- ";
+            pol += "-";
           }
         }
         if (coff != 1 && coff != -1) {
@@ -185,15 +185,12 @@ public class Solve implements IPolynomialSolver {
 
       } else if (coff != 0 && exp == 0) {
         if (coff > 0 && i != 0) {
-          pol += "+ ";
+          pol += "+";
         } else if (coff < 0) {
-          pol += "- ";
+          pol += "-";
         }
         coff = Math.abs(coff);
         pol += coff.toString();
-      }
-      if (i != temp.size() - 1 && coff != 0) {
-        pol += " ";
       }
     }
     return pol;
@@ -355,6 +352,7 @@ public class Solve implements IPolynomialSolver {
     sort(r);
     if (r.isEmpty()) {
       int[][] zero = new int[][] {{0, 0}};
+      r.add(new Term(0, 0));
       return zero;
     }
     int[][] terms = new int[r.size()][2];
