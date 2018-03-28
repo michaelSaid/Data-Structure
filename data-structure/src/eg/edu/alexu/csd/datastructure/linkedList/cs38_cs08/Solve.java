@@ -332,7 +332,9 @@ public class Solve implements IPolynomialSolver {
           Term term2 = (Term) temp2.get(j);
           if (term1.getExp() == term2.getExp()) {
             Integer sum = term1.getCoff() - term2.getCoff();
-            r.add(new Term(sum, term1.getExp()));
+            if (sum != 0) {
+              r.add(new Term(sum, term1.getExp()));
+            }
             t1[i] = true;
             t2[j] = true;
             break;
