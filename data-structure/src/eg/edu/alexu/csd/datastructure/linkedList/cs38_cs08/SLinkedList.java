@@ -29,7 +29,7 @@ public class SLinkedList implements ILinkedList {
     /**
      * Creates a node with the given element and next node.
      *
-     * @param newelement
+     * @param newElement
      *          ...
      * @param newnext
      *          ....
