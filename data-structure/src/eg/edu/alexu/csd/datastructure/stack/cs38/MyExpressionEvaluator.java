@@ -77,9 +77,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
-    if (expression.length() > 100) {
-      throw new RuntimeException(expression);
-    }
     MyStack stack = new MyStack();
     String postFix = "";
     for (int i = 0; i < expression.length(); i++) {
@@ -90,7 +87,8 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           temp += expression.substring(i, i + 1);
           if (i == expression.length() - 1) {
             break;
-          } else if (expression.charAt(i + 1) == ')') {
+          } else if (expression.charAt(i + 1) == ')'
+              || isOperation(expression.substring(i + 1, i + 2))) {
             break;
           }
           i++;
@@ -103,7 +101,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           } else {
             if (stack.isEmpty()) {
               stack.push(expression.substring(i, i + 1));
-              i++;
             } else if (compareOperation((String) stack.peek(),
                 expression.substring(i, i + 1))) {
               MyStack temp = new MyStack();
@@ -144,9 +141,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     // TODO Auto-generated method stub
     if (expression.isEmpty()) {
       throw new RuntimeException();
-    }
-    if (expression.length() > 100) {
-      throw new RuntimeException(expression);
     }
     MyStack stack = new MyStack();
     for (int i = 0; i < expression.length(); i++) {
