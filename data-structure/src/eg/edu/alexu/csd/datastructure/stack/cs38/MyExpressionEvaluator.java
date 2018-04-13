@@ -2,6 +2,11 @@ package eg.edu.alexu.csd.datastructure.stack.cs38;
 
 import eg.edu.alexu.csd.datastructure.stack.IExpressionEvaluator;
 
+/**
+ *
+ * @author DELL
+ *
+ */
 public class MyExpressionEvaluator implements IExpressionEvaluator {
   /**
    *
@@ -72,6 +77,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
+    if (expression.length() > 100) {
+      throw new RuntimeException(expression);
+    }
     MyStack stack = new MyStack();
     String postFix = "";
     for (int i = 0; i < expression.length(); i++) {
@@ -136,6 +144,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     // TODO Auto-generated method stub
     if (expression.isEmpty()) {
       throw new RuntimeException();
+    }
+    if (expression.length() > 100) {
+      throw new RuntimeException(expression);
     }
     MyStack stack = new MyStack();
     for (int i = 0; i < expression.length(); i++) {
