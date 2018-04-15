@@ -140,8 +140,8 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     }
     MyStack stack = new MyStack();
     for (int i = 0; i < expression.length(); i++) {
-      if (!isOperation(expression.substring(i, i + 1))
-          && expression.charAt(i) != ' ') {
+      char te = expression.charAt(i);
+      if (Character.isLetterOrDigit(te)) {
         String temp = "";
         while (expression.charAt(i) != ' ') {
           temp += expression.substring(i, i + 1);
