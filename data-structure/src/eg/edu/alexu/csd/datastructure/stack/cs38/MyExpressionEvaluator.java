@@ -91,16 +91,10 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
-    final int n = 100;
-    if (expression.length() > n) {
-      String r = "1 1 + ";
-      for (int i = 2; i < expression.length() / 2 + 1; i++) {
-        r += "1 + ";
-      }
-      return r.substring(0, r.length() - 1);
-    }
     String postFix = "";
     MyStack s = new MyStack();
+    int numOfNums = 0;
+    int numOfOp = 0;
     for (int i = 0; i < expression.length();) {
       char te = expression.substring(i, i + 1).charAt(0);
       if (Character.isLetterOrDigit(te)) {
@@ -114,6 +108,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           te = expression.substring(i, i + 1).charAt(0);
         }
         postFix += num + " ";
+        numOfNums++;
       } else {
         if (isOperation(expression.substring(i, i + 1))
             || expression.substring(i, i + 1).equals(opend)) {
@@ -123,6 +118,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
             s.pop();
           }
           s.push(exp);
+          if (isOperation(expression.substring(i, i + 1))) {
+            numOfOp++;
+          }
         } else if (expression.substring(i, i + 1).equals(closed)) {
           while (!s.isEmpty() && !s.peek().equals(opend)) {
             postFix += (String) s.peek() + " ";
@@ -132,6 +130,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
         }
         i++;
       }
+    }
+    if (numOfNums <= numOfOp) {
+      throw new RuntimeException();
     }
     while (!s.isEmpty()) {
       if (s.peek().toString().equals(opend)) {
