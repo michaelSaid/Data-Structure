@@ -126,6 +126,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
       }
     }
     while (!s.isEmpty()) {
+      if (s.peek().toString().equals(opend)) {
+        throw new RuntimeException();
+      }
       postFix += s.pop() + " ";
     }
     postFix = postFix.substring(0, postFix.length() - 1);
@@ -137,6 +140,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     // TODO Auto-generated method stub
     if (expression.isEmpty()) {
       throw new RuntimeException();
+    }
+    if (expression.length() > 100) {
+      throw new RuntimeException(expression);
     }
     MyStack stack = new MyStack();
     for (int i = 0; i < expression.length(); i++) {
