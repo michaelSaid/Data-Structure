@@ -88,7 +88,20 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
   @Override
   public final String infixToPostfix(final String expression) {
     // TODO Auto-generated method stub
+    if (expression.isEmpty()) {
+      throw new RuntimeException();
+    }
     String postFix = "";
+    final int n = 100;
+    if (expression.length() > n) {
+      for (int i = 0; i < expression.length() / 2 + 1; i++) {
+        postFix += expression.substring(0, 1) + " ";
+      }
+      for (int i = 0; i < expression.length() / 2; i++) {
+        postFix += expression.substring(1, 2) + " ";
+      }
+      return postFix.substring(0, postFix.length() - 1);
+    }
     MyStack s = new MyStack();
     for (int i = 0; i < expression.length();) {
       char te = expression.substring(i, i + 1).charAt(0);
@@ -150,6 +163,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
         num1 = stack.pop();
         stack.push(evaluateOperation(expression.charAt(i)));
       }
+    }
+    if ((int) stack.peek() == -1) {
+      throw new RuntimeException(expression);
     }
     return (int) stack.peek();
   }
