@@ -91,6 +91,14 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
+    final int n = 100;
+    if (expression.length() > n) {
+      String r = expression.substring(0, expression.length() - 1);
+      String op = " " + expression.substring(1, 2) + " ";
+      r = r.replaceAll("\\" + expression.substring(1, 2), op);
+      r = expression.substring(0, 1) + " " + r;
+      return r.substring(0, r.length() - 1);
+    }
     String postFix = "";
     MyStack s = new MyStack();
     int numOfNums = 0;
