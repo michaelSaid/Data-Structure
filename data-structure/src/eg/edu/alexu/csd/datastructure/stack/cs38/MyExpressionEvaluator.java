@@ -92,6 +92,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
       throw new RuntimeException();
     }
     String postFix = "";
+    boolean wasOper = false;
     final int n = 100;
     if (expression.length() > n) {
       for (int i = 0; i < expression.length() / 2 + 1; i++) {
@@ -116,7 +117,11 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           te = expression.substring(i, i + 1).charAt(0);
         }
         postFix += num + " ";
+        wasOper = false;
       } else {
+        if (wasOper) {
+          throw new RuntimeException();
+        }
         if (isOperation(expression.substring(i, i + 1))
             || expression.substring(i, i + 1).equals(opend)) {
           String exp = expression.substring(i, i + 1);
@@ -125,6 +130,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
             s.pop();
           }
           s.push(exp);
+          wasOper = true;
         } else if (expression.substring(i, i + 1).equals(closed)) {
           while (!s.isEmpty() && !s.peek().equals(opend)) {
             postFix += (String) s.peek() + " ";
@@ -163,9 +169,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
         num1 = stack.pop();
         stack.push(evaluateOperation(expression.charAt(i)));
       }
-    }
-    if ((int) stack.peek() == -1) {
-      throw new RuntimeException(expression);
     }
     return (int) stack.peek();
   }
