@@ -91,6 +91,9 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
+    if (expression.length() > 100) {
+      throw new RuntimeException(expression);
+    }
     String postFix = "";
     MyStack s = new MyStack();
     for (int i = 0; i < expression.length();) {
@@ -140,9 +143,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     // TODO Auto-generated method stub
     if (expression.isEmpty()) {
       throw new RuntimeException();
-    }
-    if (expression.length() > 100) {
-      throw new RuntimeException(expression);
     }
     MyStack stack = new MyStack();
     for (int i = 0; i < expression.length(); i++) {
