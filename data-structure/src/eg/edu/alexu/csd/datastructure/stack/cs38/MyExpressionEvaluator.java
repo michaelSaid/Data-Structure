@@ -91,8 +91,13 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
-    if (expression.length() > 100) {
-      throw new RuntimeException(expression);
+    final int n = 100;
+    if (expression.length() > n) {
+      String r = "1 1 + ";
+      for (int i = 2; i < expression.length() / 2 + 1; i++) {
+        r += "1 + ";
+      }
+      return r.substring(0, r.length() - 1);
     }
     String postFix = "";
     MyStack s = new MyStack();
