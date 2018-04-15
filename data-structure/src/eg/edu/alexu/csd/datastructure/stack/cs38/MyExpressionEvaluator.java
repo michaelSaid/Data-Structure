@@ -93,16 +93,6 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     }
     String postFix = "";
     boolean wasOper = false;
-    final int n = 100;
-    if (expression.length() > n) {
-      for (int i = 0; i < expression.length() / 2 + 1; i++) {
-        postFix += expression.substring(0, 1) + " ";
-      }
-      for (int i = 0; i < expression.length() / 2; i++) {
-        postFix += expression.substring(1, 2) + " ";
-      }
-      return postFix.substring(0, postFix.length() - 1);
-    }
     MyStack s = new MyStack();
     for (int i = 0; i < expression.length();) {
       char te = expression.substring(i, i + 1).charAt(0);
