@@ -16,6 +16,14 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
    *
    */
   private Object num2;
+  /**
+   *
+   */
+  private static String closed = ")";
+  /**
+   *
+   */
+  private static String opend = "(";
 
   /**
    *
@@ -45,7 +53,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
    */
   private boolean isOperation(final String sub) {
     return sub.equals("+") || sub.equals("-") || sub.equals("*")
-        || sub.equals("/") || sub.equals(")") || sub.equals("(");
+        || sub.equals("/");
   }
 
   /**
@@ -66,6 +74,12 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     } else if ((op1.equals("-") && op2.equals("+"))
         || (op2.equals("-") && op1.equals("+"))) {
       return true;
+    } else if ((op1.equals("*") && op2.equals("*"))
+        || (op2.equals("/") && op1.equals("/"))) {
+      return true;
+    } else if ((op1.equals("+") && op2.equals("+"))
+        || (op2.equals("-") && op1.equals("-"))) {
+      return true;
     }
     return false;
 
@@ -74,63 +88,42 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
   @Override
   public final String infixToPostfix(final String expression) {
     // TODO Auto-generated method stub
-    if (expression.isEmpty()) {
-      throw new RuntimeException();
-    }
-    MyStack stack = new MyStack();
     String postFix = "";
-    for (int i = 0; i < expression.length(); i++) {
-      if (!isOperation(expression.substring(i, i + 1))
-          && expression.charAt(i) != ' ') {
-        String temp = "";
-        while (expression.charAt(i) != ' ' && expression.charAt(i) != ')') {
-          temp += expression.substring(i, i + 1);
-          if (i == expression.length() - 1) {
-            break;
-          } else if (expression.charAt(i + 1) == ')'
-              || isOperation(expression.substring(i + 1, i + 2))) {
-            break;
-          }
+    MyStack s = new MyStack();
+    for (int i = 0; i < expression.length();) {
+      char te = expression.substring(i, i + 1).charAt(0);
+      if (Character.isLetterOrDigit(te)) {
+        String num = "";
+        while (Character.isLetterOrDigit(te)) {
+          num += expression.substring(i, i + 1);
           i++;
-        }
-        postFix += temp + " ";
-      } else if (expression.charAt(i) != ' ') {
-        if (expression.charAt(i) != ')') {
-          if (expression.charAt(i) == '(') {
-            stack.push(expression.substring(i, i + 1));
-          } else {
-            if (stack.isEmpty()) {
-              stack.push(expression.substring(i, i + 1));
-            } else if (compareOperation((String) stack.peek(),
-                expression.substring(i, i + 1))) {
-              MyStack temp = new MyStack();
-              while (!stack.isEmpty() && compareOperation((String) stack.peek(),
-                  expression.substring(i, i + 1))) {
-                temp.push(stack.pop());
-              }
-              while (!temp.isEmpty()) {
-                postFix += (String) temp.pop() + " ";
-              }
-              stack.push(expression.substring(i, i + 1));
-              i++;
-            } else {
-              stack.push(expression.substring(i, i + 1));
-              i++;
-            }
+          if (i == expression.length()) {
+            break;
           }
-        } else {
-          while (!stack.isEmpty()) {
-            String temp1 = (String) stack.peek();
-            if (!temp1.equals("(")) {
-              postFix += temp1 + " ";
-            }
-            temp1 = (String) stack.pop();
-          }
+          te = expression.substring(i, i + 1).charAt(0);
         }
+        postFix += num + " ";
+      } else {
+        if (isOperation(expression.substring(i, i + 1))
+            || expression.substring(i, i + 1).equals(opend)) {
+          String exp = expression.substring(i, i + 1);
+          while (!s.isEmpty() && compareOperation((String) s.peek(), exp)) {
+            postFix += (String) s.peek() + " ";
+            s.pop();
+          }
+          s.push(exp);
+        } else if (expression.substring(i, i + 1).equals(closed)) {
+          while (!s.isEmpty() && !s.peek().equals(opend)) {
+            postFix += (String) s.peek() + " ";
+            s.pop();
+          }
+          s.pop();
+        }
+        i++;
       }
     }
-    while (!stack.isEmpty()) {
-      postFix += (String) stack.pop() + " ";
+    while (!s.isEmpty()) {
+      postFix += s.pop() + " ";
     }
     postFix = postFix.substring(0, postFix.length() - 1);
     return postFix;
