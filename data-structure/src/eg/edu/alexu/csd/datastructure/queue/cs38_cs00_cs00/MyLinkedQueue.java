@@ -145,10 +145,16 @@ public class MyLinkedQueue implements IQueue, ILinkedBased {
   @Override
   public final Object dequeue() {
     // TODO Auto-generated method stub
-    if (isEmpty()) {
+    if (size == 0) {
       throw new RuntimeException();
     }
     Object r = back.getItem();
+    if (size == 2) {
+      back.setItem(front.getItem());
+      front = new QNode(back, null, null);
+      size--;
+      return r;
+    }
     QNode deleted = back;
     back = deleted.getPrev();
     back.setNext(null);
