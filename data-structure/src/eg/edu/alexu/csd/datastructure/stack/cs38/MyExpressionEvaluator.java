@@ -33,13 +33,13 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
    */
   private Object evaluateOperation(final char operation) {
     if (operation == '+') {
-      return (int) num1 + (int) num2;
+      return (float) num1 + (float) num2;
     } else if (operation == '-') {
-      return (int) num1 - (int) num2;
+      return (float) num1 - (float) num2;
     } else if (operation == '*') {
-      return (int) num1 * (int) num2;
+      return (float) num1 * (float) num2;
     } else if (operation == '/') {
-      return ((int) num1 / (int) num2);
+      return ((float) num1 / (float) num2);
     }
     return null;
 
@@ -167,14 +167,14 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           temp += expression.substring(i, i + 1);
           i++;
         }
-        stack.push(Integer.valueOf(temp));
+        stack.push(Float.valueOf(temp));
       } else if (expression.charAt(i) != ' ') {
         num2 = stack.pop();
         num1 = stack.pop();
         stack.push(evaluateOperation(expression.charAt(i)));
       }
     }
-    return (int) stack.peek();
+    return Math.round((float) stack.peek());
   }
 
 }
