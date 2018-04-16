@@ -1,4 +1,4 @@
-package eg.edu.alexu.csd.datastructure.queue.cs38_cs00_cs00;
+package eg.edu.alexu.csd.datastructure.queue.cs38;
 
 import eg.edu.alexu.csd.datastructure.queue.ILinkedBased;
 import eg.edu.alexu.csd.datastructure.queue.IQueue;
@@ -128,17 +128,20 @@ public class MyLinkedQueue implements IQueue, ILinkedBased {
   @Override
   public final void enqueue(final Object item) {
     // TODO Auto-generated method stub
-    if (isEmpty()) {
-      back.setItem(item);
-    } else if (size() == 1) {
-      front.setItem(item);
-    } else {
-      QNode newNode = new QNode(null, null, item);
-      QNode temp = front;
-      newNode.setNext(temp);
-      temp.setPrev(newNode);
-      front = newNode;
+    QNode newNode = new QNode(null, null, item);
+    if (size == 0) {
+      front.setNext(newNode);
+      newNode.setPrev(front);
+      back.setPrev(newNode);
+      newNode.setNext(back);
+      size++;
+      return;
     }
+    QNode n = front.getNext();
+    n.setPrev(newNode);
+    front.setNext(newNode);
+    newNode.setPrev(front);
+    newNode.setNext(n);
     size++;
   }
 
@@ -148,18 +151,14 @@ public class MyLinkedQueue implements IQueue, ILinkedBased {
     if (size == 0) {
       throw new RuntimeException();
     }
-    Object r = back.getItem();
-    if (size == 2) {
-      back.setItem(front.getItem());
-      front = new QNode(back, null, null);
-      size--;
-      return r;
-    }
-    QNode deleted = back;
-    back = deleted.getPrev();
-    back.setNext(null);
+    QNode deleted = back.getPrev();
+    Object re = deleted.getItem();
+    back.setPrev(deleted.getPrev());
+    deleted.setNext(null);
+    deleted.setPrev(null);
     size--;
-    return r;
+    return re;
+
   }
 
   @Override
