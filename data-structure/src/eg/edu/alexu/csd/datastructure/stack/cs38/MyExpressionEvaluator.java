@@ -91,15 +91,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
     if (expression.isEmpty()) {
       throw new RuntimeException();
     }
-    final int n = 100;
-    if (expression.length() > n) {
-      String r = expression.substring(0, expression.length() - 1);
-      String op = " " + expression.substring(1, 2) + " ";
-      r = r.replaceAll("\\" + expression.substring(1, 2), op);
-      r = expression.substring(0, 1) + " " + r;
-      return r.substring(0, r.length() - 1);
-    }
-    String postFix = "";
+    StringBuilder postFix = new StringBuilder("");
     MyStack s = new MyStack();
     int numOfNums = 0;
     int numOfOp = 0;
@@ -115,14 +107,14 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           }
           te = expression.substring(i, i + 1).charAt(0);
         }
-        postFix += num + " ";
+        postFix.append(num + " ");
         numOfNums++;
       } else {
         if (isOperation(expression.substring(i, i + 1))
             || expression.substring(i, i + 1).equals(opend)) {
           String exp = expression.substring(i, i + 1);
           while (!s.isEmpty() && compareOperation((String) s.peek(), exp)) {
-            postFix += (String) s.peek() + " ";
+            postFix.append((String) s.peek() + " ");
             s.pop();
           }
           s.push(exp);
@@ -131,7 +123,7 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
           }
         } else if (expression.substring(i, i + 1).equals(closed)) {
           while (!s.isEmpty() && !s.peek().equals(opend)) {
-            postFix += (String) s.peek() + " ";
+            postFix.append((String) s.peek() + " ");
             s.pop();
           }
           s.pop();
@@ -146,10 +138,10 @@ public class MyExpressionEvaluator implements IExpressionEvaluator {
       if (s.peek().toString().equals(opend)) {
         throw new RuntimeException();
       }
-      postFix += s.pop() + " ";
+      postFix.append(s.pop() + " ");
     }
-    postFix = postFix.substring(0, postFix.length() - 1);
-    return postFix;
+    postFix.deleteCharAt(postFix.length() - 1);
+    return postFix.toString();
   }
 
   @Override
