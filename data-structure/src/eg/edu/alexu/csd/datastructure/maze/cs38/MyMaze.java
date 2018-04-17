@@ -33,7 +33,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveBFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = {""} ;
+    String[] map = {""};
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -111,6 +111,14 @@ public class MyMaze implements IMazeSolver {
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
+    }
+    if (sX <= 0 || sY <= 0 || sY != map.length) {
+      throw new RuntimeException();
+    }
+    for (int i = 0; i < map.length; i++) {
+      if (map[i].length() != sX) {
+        throw new RuntimeException();
+      }
     }
     MyStack s = new MyStack();
     DLinkedList coo = new DLinkedList();
