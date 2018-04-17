@@ -42,7 +42,7 @@ public class MyMaze implements IMazeSolver {
     DLinkedList visited = new DLinkedList();
     Cell t = findS(map);
     if (t == null) {
-      throw new RuntimeException();
+      return null;
     }
     s.push(t);
     while (!s.isEmpty()) {
@@ -62,7 +62,7 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      throw new RuntimeException();
+      return null;
     }
     int[][] r = new int[coo.size][2];
     for (int i = 0; i < coo.size(); i++) {

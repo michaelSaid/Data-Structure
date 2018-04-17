@@ -19,28 +19,6 @@ public class Cell {
   /**
   *
   */
-  boolean visited;
-
-  /**
-   *
-   * @return visited
-   */
-  public boolean isVisited() {
-    return visited;
-  }
-
-  /**
-   *
-   * @param newVisited
-   *          ...
-   */
-  public void setVisited(final boolean newVisited) {
-    this.visited = newVisited;
-  }
-
-  /**
-  *
-  */
   DLinkedList neighbour;
 
   /**
@@ -108,7 +86,7 @@ public class Cell {
    *          ...
    */
   public final void setNeighbour(final String[] map) {
-    int[] a = new int[] { -1, -1, 1, 1 };
+    int[] a = new int[] {-1, -1, 1, 1};
     int maxY = map.length - 1;
     int maxX = map[0].length() - 1;
     for (int i = 0; i < a.length; i++) {
@@ -145,14 +123,25 @@ public class Cell {
   }
 
   /**
-   *
+   * @return ....
+   * @param obj
+   *          ....
    */
-  public boolean equals(Object obj) {
-    if (obj == this)
+  public boolean equals(final Object obj) {
+    if (obj == this) {
       return true;
-    if (obj == null || obj.getClass() != this.getClass())
+    }
+    if (obj == null || obj.getClass() != this.getClass()) {
       return false;
+    }
     Cell tmp = (Cell) obj;
     return tmp.getX() == this.getX() && this.getY() == tmp.getY();
+  }
+
+  /**
+   * @return ....
+   */
+  public int hashCode() {
+    return 0;
   }
 }
