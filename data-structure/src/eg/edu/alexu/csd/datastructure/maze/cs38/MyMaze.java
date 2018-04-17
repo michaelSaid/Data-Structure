@@ -25,7 +25,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveBFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = {""};
+    String[] map = { "" };
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -39,8 +39,8 @@ public class MyMaze implements IMazeSolver {
     Cell t = findS(map);
     if (t == null) {
       String n = "";
-      for(int i=0 ;i<map.length;i++) {
-         n = n + map[i]+" ";
+      for (int i = 0; i < map.length; i++) {
+        n = n + map[i] + " ";
       }
       throw new RuntimeException(n);
     }
@@ -86,7 +86,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveDFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = {""};
+    String[] map = { "" };
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -99,8 +99,8 @@ public class MyMaze implements IMazeSolver {
     Cell t = findS(map);
     if (t == null) {
       String n = "";
-      for(int i=0 ;i<map.length;i++) {
-         n = n + map[i]+" ";
+      for (int i = 0; i < map.length; i++) {
+        n = n + map[i] + " ";
       }
       throw new RuntimeException(n);
     }
@@ -143,6 +143,7 @@ public class MyMaze implements IMazeSolver {
     BufferedReader in = new BufferedReader(new FileReader(m));
     String s;
     LinkedList<String> r = new LinkedList<String>();
+    s = in.readLine();
     while ((s = in.readLine()) != null) {
       r.add(s);
     }
