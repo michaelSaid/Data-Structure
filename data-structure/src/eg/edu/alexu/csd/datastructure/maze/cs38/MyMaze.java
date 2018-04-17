@@ -25,7 +25,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveBFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = { "" };
+    String[] map = {""};
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -36,13 +36,14 @@ public class MyMaze implements IMazeSolver {
     DLinkedList coo = new DLinkedList();
     DLinkedList visited = new DLinkedList();
     Cell[][] prev = new Cell[map.length][map[0].length()];
+    for (int i = 0; i < map.length - 1; i++) {
+      if (map[i].length() != map[i + 1].length()) {
+        return null;
+      }
+    }
     Cell t = findS(map);
     if (t == null) {
-      String n = "";
-      for (int i = 0; i < map.length; i++) {
-        n = n + map[i] + " ";
-      }
-      throw new RuntimeException(n);
+      return null;
     }
     s.enqueue(t);
     while (!s.isEmpty()) {
@@ -63,7 +64,11 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      return null;
+      String n = "";
+      for (int i = 0; i < map.length; i++) {
+        n = n + map[i] + " ";
+      }
+      throw new RuntimeException(n);
     }
     coo.clear();
     for (;;) {
@@ -86,7 +91,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveDFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = { "" };
+    String[] map = {""};
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -98,11 +103,7 @@ public class MyMaze implements IMazeSolver {
     DLinkedList visited = new DLinkedList();
     Cell t = findS(map);
     if (t == null) {
-      String n = "";
-      for (int i = 0; i < map.length; i++) {
-        n = n + map[i] + " ";
-      }
-      throw new RuntimeException(n);
+      return null;
     }
     s.push(t);
     while (!s.isEmpty()) {
