@@ -102,7 +102,11 @@ public class MyMaze implements IMazeSolver {
     DLinkedList visited = new DLinkedList();
     Cell t = findS(map);
     if (t == null) {
-      return null;
+      String n = "";
+      for (int i = 0; i < map.length; i++) {
+       n = n + map[i] + " ";
+       }
+       throw new RuntimeException(n);
     }
     s.push(t);
     while (!s.isEmpty()) {
@@ -122,7 +126,11 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      return null;
+      String n = "";
+      for (int i = 0; i < map.length; i++) {
+       n = n + map[i] + " ";
+       }
+       throw new RuntimeException(n);
     }
     int[][] r = new int[coo.size][2];
     for (int i = 0; i < coo.size(); i++) {
