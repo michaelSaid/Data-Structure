@@ -25,7 +25,7 @@ public class MyMaze implements IMazeSolver {
   public final int[][] solveBFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = {""};
+    String[] map = null;
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
