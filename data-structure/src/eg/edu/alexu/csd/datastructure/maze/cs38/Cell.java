@@ -2,6 +2,11 @@ package eg.edu.alexu.csd.datastructure.maze.cs38;
 
 import eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08.DLinkedList;
 
+/**
+ *
+ * @author DELL
+ *
+ */
 public class Cell {
   /**
   *
@@ -85,7 +90,39 @@ public class Cell {
    * @param map
    *          ...
    */
-  public final void setNeighbour(final String[] map) {
+  public final void setNeighbourBfs(final String[] map) {
+    int[] a = new int[] {1, 1, -1, -1};
+    int maxY = map.length - 1;
+    int maxX = map[0].length() - 1;
+    for (int i = 0; i < a.length; i++) {
+      if (i % 2 == 0) {
+        if ((x + a[i]) <= maxX && (x + a[i]) >= 0) {
+          if (map[y].charAt(x + a[i]) != '#') {
+            Cell t = new Cell(map[y].charAt(x + a[i]));
+            t.setX(x + a[i]);
+            t.setY(y);
+            neighbour.add(t);
+          }
+        }
+      } else {
+        if ((y + a[i]) <= maxY && (y + a[i]) >= 0) {
+          if (map[y + a[i]].charAt(x) != '#') {
+            Cell t = new Cell(map[y + a[i]].charAt(x));
+            t.setX(x);
+            t.setY(y + a[i]);
+            neighbour.add(t);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   *
+   * @param map
+   *          ...
+   */
+  public final void setNeighbourDfs(final String[] map) {
     int[] a = new int[] {-1, -1, 1, 1};
     int maxY = map.length - 1;
     int maxX = map[0].length() - 1;

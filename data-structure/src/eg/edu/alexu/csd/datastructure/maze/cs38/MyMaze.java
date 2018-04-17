@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import eg.edu.alexu.csd.datastructure.linkedList.cs38_cs08.DLinkedList;
 import eg.edu.alexu.csd.datastructure.maze.IMazeSolver;
+import eg.edu.alexu.csd.datastructure.queue.cs38.MyLinkedQueue;
 import eg.edu.alexu.csd.datastructure.stack.cs38.MyStack;
 
 /**
@@ -23,14 +24,65 @@ public class MyMaze implements IMazeSolver {
   @Override
   public final int[][] solveBFS(final File maze) {
     // TODO Auto-generated method stub
-    return null;
+    this.m = maze;
+    String[] map = {""};
+    try {
+      map = (String[]) readFile();
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    MyLinkedQueue s = new MyLinkedQueue();
+    DLinkedList coo = new DLinkedList();
+    DLinkedList visited = new DLinkedList();
+    Cell[][] prev = new Cell[map.length][map[0].length()];
+    Cell t = findS(map);
+    if (t == null) {
+      return null;
+    }
+    s.enqueue(t);
+    while (!s.isEmpty()) {
+      t = (Cell) s.dequeue();
+      visited.add(t);
+      coo.add(t);
+      if (t.getData() == 'E') {
+        break;
+      }
+      t.setNeighbourBfs(map);
+      for (int i = 0; i < t.getNeighbour().size(); i++) {
+        Cell c = (Cell) t.getNeighbour().get(i);
+        if (!visited.contains(c)) {
+          s.enqueue(c);
+          visited.add(c);
+          prev[c.getY()][c.getX()] = t;
+        }
+      }
+    }
+    if (t.getData() != 'E') {
+      return null;
+    }
+    coo.clear();
+    for (;;) {
+      coo.add(t);
+      t = prev[t.getY()][t.getX()];
+      if (t == null) {
+        break;
+      }
+    }
+    int[][] r = new int[coo.size][2];
+    for (int i = 0; i < coo.size(); i++) {
+      Cell c = (Cell) coo.get(coo.size() - 1 - i);
+      r[i][0] = c.getY();
+      r[i][1] = c.getX();
+    }
+    return r;
   }
 
   @Override
   public final int[][] solveDFS(final File maze) {
     // TODO Auto-generated method stub
     this.m = maze;
-    String[] map = null;
+    String[] map = {""};
     try {
       map = (String[]) readFile();
     } catch (Exception e) {
@@ -52,7 +104,7 @@ public class MyMaze implements IMazeSolver {
       if (t.getData() == 'E') {
         break;
       }
-      t.setNeighbour(map);
+      t.setNeighbourDfs(map);
       for (int i = 0; i < t.getNeighbour().size(); i++) {
         Cell c = (Cell) t.getNeighbour().get(i);
         if (!visited.contains(c)) {
