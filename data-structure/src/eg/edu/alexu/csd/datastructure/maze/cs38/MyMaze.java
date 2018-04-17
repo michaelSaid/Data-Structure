@@ -38,7 +38,11 @@ public class MyMaze implements IMazeSolver {
     Cell[][] prev = new Cell[map.length][map[0].length()];
     for (int i = 0; i < map.length - 1; i++) {
       if (map[i].length() != map[i + 1].length()) {
-        return null;
+        String n = "";
+        for (int  j = 0; j < map.length; j++) {
+          n = n + map[j] + " ";
+        }
+        throw new RuntimeException(n);
       }
     }
     Cell t = findS(map);
