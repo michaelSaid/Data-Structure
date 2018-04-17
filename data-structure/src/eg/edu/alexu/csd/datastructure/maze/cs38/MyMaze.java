@@ -38,7 +38,11 @@ public class MyMaze implements IMazeSolver {
     Cell[][] prev = new Cell[map.length][map[0].length()];
     Cell t = findS(map);
     if (t == null) {
-      throw new RuntimeException();
+      String n = "";
+      for(int i=0 ;i<map.length;i++) {
+         n = n + map[i]+" ";
+      }
+      throw new RuntimeException(n);
     }
     s.enqueue(t);
     while (!s.isEmpty()) {
@@ -94,7 +98,11 @@ public class MyMaze implements IMazeSolver {
     DLinkedList visited = new DLinkedList();
     Cell t = findS(map);
     if (t == null) {
-      throw new RuntimeException();
+      String n = "";
+      for(int i=0 ;i<map.length;i++) {
+         n = n + map[i]+" ";
+      }
+      throw new RuntimeException(n);
     }
     s.push(t);
     while (!s.isEmpty()) {
