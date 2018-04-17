@@ -58,9 +58,6 @@ public class MyMaze implements IMazeSolver {
         }
       }
     }
-    if (t.getData() != 'E') {
-      return null;
-    }
     coo.clear();
     for (;;) {
       coo.add(t);
