@@ -36,15 +36,6 @@ public class MyMaze implements IMazeSolver {
     DLinkedList coo = new DLinkedList();
     DLinkedList visited = new DLinkedList();
     Cell[][] prev = new Cell[map.length][map[0].length()];
-    for (int i = 0; i < map.length - 1; i++) {
-      if (map[i].length() != map[i + 1].length()) {
-        String n = "";
-        for (int  j = 0; j < map.length; j++) {
-          n = n + map[j] + " ";
-        }
-        throw new RuntimeException(n);
-      }
-    }
     Cell t = findS(map);
     if (t == null) {
       return null;
@@ -68,11 +59,7 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      String n = "";
-      for (int i = 0; i < map.length; i++) {
-        n = n + map[i] + " ";
-      }
-      throw new RuntimeException(n);
+      return null;
     }
     coo.clear();
     for (;;) {
