@@ -32,6 +32,11 @@ public class MyMaze implements IMazeSolver {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    for (int i = 0; i < map.length - 1; i++) {
+      if (map[i].length() != map[i + 1].length()) {
+        throw new RuntimeException();
+      }
+    }
     MyLinkedQueue s = new MyLinkedQueue();
     DLinkedList coo = new DLinkedList();
     DLinkedList visited = new DLinkedList();
