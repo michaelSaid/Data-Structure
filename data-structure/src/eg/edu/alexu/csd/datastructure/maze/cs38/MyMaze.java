@@ -20,6 +20,14 @@ public class MyMaze implements IMazeSolver {
    *
    */
   File m;
+  /**
+   *
+   */
+  int sX;
+  /**
+   *
+   */
+  int sY;
 
   @Override
   public final int[][] solveBFS(final File maze) {
@@ -32,10 +40,8 @@ public class MyMaze implements IMazeSolver {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    for (int i = 0; i < map.length - 1; i++) {
-      if (map[i].length() != map[i + 1].length()) {
-        throw new RuntimeException();
-      }
+    if (sX <= 0 || sY <= 0 || sY != map.length) {
+      throw new RuntimeException();
     }
     MyLinkedQueue s = new MyLinkedQueue();
     DLinkedList coo = new DLinkedList();
@@ -155,6 +161,14 @@ public class MyMaze implements IMazeSolver {
     String s;
     LinkedList<String> r = new LinkedList<String>();
     s = in.readLine();
+    int i;
+    for (i = 0; i < s.length(); i++) {
+      if (s.substring(i, i + 1).equals(" ")) {
+        break;
+      }
+    }
+    sY = Integer.valueOf(s.substring(0, i));
+    sX = Integer.valueOf(s.substring(i + 1));
     while ((s = in.readLine()) != null) {
       r.add(s);
     }
