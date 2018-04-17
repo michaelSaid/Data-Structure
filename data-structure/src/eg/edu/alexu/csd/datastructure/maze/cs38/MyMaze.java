@@ -38,11 +38,7 @@ public class MyMaze implements IMazeSolver {
     Cell[][] prev = new Cell[map.length][map[0].length()];
     Cell t = findS(map);
     if (t == null) {
-      String n = "";
-      for (int i = 0; i < map.length; i++) {
-       n = n + map[i] + " ";
-       }
-       throw new RuntimeException(n);
+      throw new RuntimeException();
     }
     s.enqueue(t);
     while (!s.isEmpty()) {
@@ -63,11 +59,14 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      String n = "";
       for (int i = 0; i < map.length; i++) {
-       n = n + map[i] + " ";
-       }
-       throw new RuntimeException(n);
+        for (int j = 0; j < map[0].length(); j++) {
+          if (map[i].charAt(j) == 'E') {
+            return null;
+          }
+        }
+      }
+      throw new RuntimeException();
     }
     coo.clear();
     for (;;) {
@@ -102,11 +101,7 @@ public class MyMaze implements IMazeSolver {
     DLinkedList visited = new DLinkedList();
     Cell t = findS(map);
     if (t == null) {
-      String n = "";
-      for (int i = 0; i < map.length; i++) {
-       n = n + map[i] + " ";
-       }
-       throw new RuntimeException(n);
+      throw new RuntimeException();
     }
     s.push(t);
     while (!s.isEmpty()) {
@@ -126,11 +121,14 @@ public class MyMaze implements IMazeSolver {
       }
     }
     if (t.getData() != 'E') {
-      String n = "";
       for (int i = 0; i < map.length; i++) {
-       n = n + map[i] + " ";
-       }
-       throw new RuntimeException(n);
+        for (int j = 0; j < map[0].length(); j++) {
+          if (map[i].charAt(j) == 'E') {
+            return null;
+          }
+        }
+      }
+      throw new RuntimeException();
     }
     int[][] r = new int[coo.size][2];
     for (int i = 0; i < coo.size(); i++) {
