@@ -116,6 +116,9 @@ public class MyPriorityQueue implements IPriorityQueue {
   @Override
   public final void insert(final Object item, final int key) {
     // TODO Auto-generated method stub
+    if (key < 1) {
+      throw new RuntimeException();
+    }
     if (size == 0) {
       head = new PNode(item, null, key);
       size++;
