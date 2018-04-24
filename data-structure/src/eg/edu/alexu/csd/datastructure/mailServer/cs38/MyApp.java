@@ -1,10 +1,10 @@
 package eg.edu.alexu.csd.datastructure.mailServer.cs38;
 
+import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 import eg.edu.alexu.csd.datastructure.mailServer.IApp;
 import eg.edu.alexu.csd.datastructure.mailServer.IContact;
 import eg.edu.alexu.csd.datastructure.mailServer.IFilter;
 import eg.edu.alexu.csd.datastructure.mailServer.IFolder;
-import eg.edu.alexu.csd.datastructure.mailServer.ILinkedList;
 import eg.edu.alexu.csd.datastructure.mailServer.IMail;
 import eg.edu.alexu.csd.datastructure.mailServer.ISort;
 
@@ -13,8 +13,7 @@ import eg.edu.alexu.csd.datastructure.mailServer.ISort;
  * @author DELL
  *
  */
-public class MyApp
-    implements IApp, IContact, IFilter, IFolder, ILinkedList, IMail, ISort {
+public class MyApp implements IApp, IContact, IFilter, IFolder, IMail, ISort {
 
   @Override
   public final boolean signin(final String email, final String password) {
